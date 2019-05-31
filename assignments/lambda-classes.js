@@ -29,11 +29,12 @@
 // * Person receives `speak` as a method.
 // * This method logs out a phrase `Hello my name is Fred, I am from Bedrock` where `name` and `location` are the object's own props
 
+
 class Person {
     constructor(attributes) {
         this.name = attributes.name;
         this.age = attributes.age;
-        this.location: attributes.location;
+        this.location = attributes.location;
     }
 
 speak() {
@@ -57,15 +58,16 @@ speak() {
 class Instructor extends Person{
     constructor(attributes){
         super(attributes);
-
-
+        this.specialty = attributes.specialty;
+        this.favLanguage = attributes.favLanguage;
+        this.catchPhrase = attributes.catchPhrase;
     }
     demo() {
-        return `${this.name} took damage.`;
+        return `Today we are learning about ${this.subject}`;
       };
 
       grade() {
-        return `${this.name} took damage.`;
+        return `${student.name} receives a perfect score on {subject}'`;
       };
 
 }
@@ -89,7 +91,9 @@ class Instructor extends Person{
 class Student extends Person{
     constructor(attributes){
         super(attributes);
-
+        this.previousBackground = attributes.previousBackground;
+        this.className = attributes.className;
+        this.favSubjects = attributes.favSubjects;
 
     }
     listsSubjects() {
@@ -97,11 +101,11 @@ class Student extends Person{
       };
 
     PRAssignment() {
-        return `${this.name} took damage.`;
+        return `${this.name} has submitted a PR for ${this.subject}`;
       };
     
     springChallenge() {
-        return `${this.name} took damage.`;
+        return `student.name has begun sprint challenge on {subject}`;
       };
 
 }
@@ -127,10 +131,59 @@ class ProjectManager extends Instructor{
       };
 
       debugsCode() {
-        return `${this.name} took damage.`;
+        return `${this.name} debugs ${this.name}'s code on ${this.subject}
+        `;
       };
 
 }
+
+// OBJECTS
+
+const charlie = new Student({
+      name: 'Charlie',
+      location: 'Brown',
+      age: 20,
+      className: WEBPT7,
+      favLanguage: 'CSS',
+      specialty: 'Front-end',
+      catchPhrase: `Good Grief!`
+});
+
+const snoopy = new Instructor({
+    name: 'Snoopy',
+    location: 'Brown',
+    age: 45,
+    favLanguage: 'React',
+    specialty: 'Front-end',
+    catchPhrase: `The more you learn, the more you love!`
+});
+
+const linus = new Instructor({
+    name: 'Linus',
+    location: 'Van Pelt',
+    gradClassName: 'WEB16',
+    className: 'WEBPT6',
+    age: 21,
+    favLanguage: 'Java',
+    specialty: 'Back-end',
+    catchPhrase: `I need my blanket!`
+});
+
+const lucy = new ProjectManager({
+    name: 'Lucy',
+    location: 'Van Pelt',
+    gradClassName: 'CS14',
+    className: WEB,
+    age: 25,
+    favLanguage: 'Python',
+    specialty: 'CS',
+    catchPhrase: `Five cents please!`
+});
+
+
+
+
+
 
 // #### Stretch Problem
 
