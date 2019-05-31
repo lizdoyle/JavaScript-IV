@@ -59,8 +59,8 @@ class Instructor extends Person{
         return `Today we are learning about ${this.subject}`;
       };
 
-      grade() {
-        return `${student.name} receives a perfect score on {subject}'`;
+      grade(Student) {
+        return `${Student.name} receives a perfect score on ${this.subject}'`;
       };
 
 }
@@ -75,6 +75,7 @@ class Instructor extends Person{
 //   * `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
+// cannot use of arrow functions using this 
 
 class Student extends Person{
     constructor(attributes){
@@ -85,14 +86,16 @@ class Student extends Person{
 
     }
     listsSubjects() {
-        this.attributes.favSubjects.forEach(list => {
-            return `list`;
-        });
-      };
+        this.attributes.favSubjects.forEach(function(list) {
+            for(let i = 0; i < list.length; i++) {
+                  callBack(list[i], i);
+        };
+        return `${list}`;
+      }
 
     PRAssignment() {
         return `${this.name} has submitted a PR for ${this.subject}`;
-      };
+      }
     
     springChallenge() {
         return `${this.name} has begun sprint challenge on ${this.subject}`;
@@ -208,6 +211,7 @@ const linus = new Instructor({
     className: 'WEB20, WEBPT8',
     age: 21,
     favLanguage: 'Java',
+    subject: 'Database Management',
     specialty: 'Back-end',
     catchPhrase: `I need my blanket!`
 });
@@ -217,8 +221,9 @@ const othmar = new Instructor({
     location: 'Pebblebrook',
     className: 'WEB20, WEBPT7',
     age: 47,
-    favLanguage: 'Full Stack Developer',
+    favLanguage: 'Javascript',
     specialty: 'Everything',
+    subject: "Javascript",
     catchPhrase: `Womp Womp Womp Womp.`
 });
 
@@ -226,8 +231,8 @@ const othmar = new Instructor({
 
 // student consoles
 console.log(charlie.springChallenge());
-console.log(charlie.classname);
-// console.log(pigpen.listsSubjects());
+console.log(charlie.className);
+console.log(pigpen.listsSubjects());
 console.log(pigpen.previousBackground);
 console.log(franklin.PRAssignment());
 console.log(franklin.favSubjects);
@@ -235,13 +240,13 @@ console.log(franklin.favSubjects);
 console.log(snoopy.gradClassName);
 console.log(snoopy.standUp());
 console.log(lucy.favInstructor);
-console.log(lucy.debugsCode);
+// console.log(lucy.debugsCode);
 // instructor consoles
 console.log(linus.specialty);
 console.log(linus.catchPhrase);
-// console.log(othmar.grade());
+console.log(othmar.grade(charlie));
 console.log(linus.demo());
-console.log(othmar.favLanguage);
+console.log(othmar.favLanguage); 
 
 
 
