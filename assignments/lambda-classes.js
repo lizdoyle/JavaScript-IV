@@ -24,17 +24,15 @@
 
 // #### Person
 
-// * First we need a Person class. This will be our `base-class`
-// * Person receives `name` `age` `location` all as props
-// * Person receives `speak` as a method.
-// * This method logs out a phrase `Hello my name is Fred, I am from Bedrock` where `name` and `location` are the object's own props
-
+// base class - name age & location / speak method ( This method logs out a phrase `Hello my name is Fred, I am from Bedrock` where `name` and `location` are the object's own props).
 
 class Person {
     constructor(attributes) {
         this.name = attributes.name;
         this.age = attributes.age;
         this.location = attributes.location;
+        this.subject = attributes.subject;
+
     }
 
 speak() {
@@ -43,14 +41,9 @@ speak() {
 
 }
 
-// #### Instructor
+// #### Instructor - same attr as person
+    // UNIQUE: specialty (what they are good at, favLanguate, catch phrase)
 
-// * Now that we have a Person as our base class, we'll build our Instructor class.
-// * Instructor uses the same attributes that have been set up by Person
-// * Instructor has the following unique props:
-//   * `specialty` what the Instructor is good at i.e. 'redux'
-//   * `favLanguage` i.e. 'JavaScript, Python, Elm etc.'
-//   * `catchPhrase` i.e. `Don't forget the homies`
 // * Instructor has the following methods:
 //   * `demo` receives a `subject` string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 //   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
@@ -73,15 +66,10 @@ class Instructor extends Person{
 }
 
 
+// #### Student - PERSON
 
-// #### Student
+// UNIQUE - previousBackground, className, favSubjects as an array
 
-// * Now we need some students!
-// * Student uses the same attributes that have been set up by Person
-// * Student has the following unique props:
-//   * `previousBackground` i.e. what the Student used to do before Lambda School
-//   * `className` i.e. CS132
-//   * `favSubjects`. i.e. an array of the student's favorite subjects ['Html', 'CSS', 'JavaScript']
 // * Student has the following methods:
 //   * `listsSubjects` a method that logs out all of the student's favoriteSubjects one by one.
 //   * `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
@@ -97,7 +85,9 @@ class Student extends Person{
 
     }
     listsSubjects() {
-        return `${this.name} took damage.`;
+        this.attributes.favSubjects.forEach(list => {
+            return `list`;
+        });
       };
 
     PRAssignment() {
@@ -105,17 +95,14 @@ class Student extends Person{
       };
     
     springChallenge() {
-        return `student.name has begun sprint challenge on {subject}`;
+        return `${this.name} has begun sprint challenge on ${this.subject}`;
       };
 
 }
-// #### Project Manager
+// #### Project Manager - exten Instructors
 
-// * Now that we have instructors and students, we'd be nowhere without our PM's
-// * ProjectManagers are extensions of Instructors
-// * ProjectManagers have the following unique props:
-//   * `gradClassName`: i.e. CS1
-//   * `favInstructor`: i.e. Sean
+// UNIQUE - gradClassName, favInstructor
+
 // * ProjectManagers have the following Methods:
 //   * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
 //   * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
@@ -123,14 +110,15 @@ class Student extends Person{
 class ProjectManager extends Instructor{
     constructor(attributes){
         super(attributes);
-
-
+        this.gradClassName = attributes.gradClassName;
+        this.favInstructor = attributes.favInstructor;
+        this.channel = attributes.channel;
     }
     standUp() {
-        return `${this.name} took damage.`;
+        return `${this.name} announces to ${this.channel}, @channel standy times!​​​​​`;
       };
 
-      debugsCode() {
+    debugsCode() {
         return `${this.name} debugs ${this.name}'s code on ${this.subject}
         `;
       };
@@ -139,46 +127,121 @@ class ProjectManager extends Instructor{
 
 // OBJECTS
 
+// STUDENTS: 
 const charlie = new Student({
-      name: 'Charlie',
-      location: 'Brown',
+      name: 'Charlie Brown',
+      location: 'New York',
       age: 20,
-      className: WEBPT7,
+      className: 'WEBPT7',
+      previousBackground: 'Retail',
       favLanguage: 'CSS',
+    //   added subject for students based on PRAssignment Method
+      subject: 'React',
+      favSubjects: ['HTML', 'CSS', 'JSX'],
       specialty: 'Front-end',
       catchPhrase: `Good Grief!`
 });
 
-const snoopy = new Instructor({
+const pigpen = new Student({
+    name: 'Pigpen',
+    location: 'Alabama',
+    age: 23,
+    className: 'DSPT7',
+    previousBackground: 'Construction',
+    favLanguage: 'Python',
+    subject: 'Data Science',
+    favSubjects: ['Python', 'Java', 'C'],
+    specialty: 'Analysis',
+    catchPhrase: `Dirt and dust is life`
+});
+
+const franklin = new Student({
+    name: 'Franklin',
+    location: 'Atlanta',
+    age: 22,
+    className: 'UXPT7',
+    previousBackground: 'Chef',
+    favLanguage: 'HTML',
+  //   added subject for students based on PRAssignment Method
+    subject: 'UX Design',
+    favSubjects: ['HTML', 'CSS',],
+    specialty: 'User Interface',
+    catchPhrase: `Life is like a flexbox of boxes!`
+});
+
+
+// PM (PROJECT MANAGERS)
+
+const snoopy = new ProjectManager({
     name: 'Snoopy',
-    location: 'Brown',
-    age: 45,
+    location: 'Coolsville',
+    age: 35,
+    channel: 'WEB',
+    gradClassName: 'CS14',
+    className: 'WEB20, WEBPT8',
+    previousBackground: 'Coolest Dog',
+    favInstructor: 'Linus VanPelt',
     favLanguage: 'React',
     specialty: 'Front-end',
     catchPhrase: `The more you learn, the more you love!`
 });
 
+const lucy = new ProjectManager({
+    name: 'Lucy VanPelt',
+    location: 'Chicago',
+    gradClassName: 'DS2',
+    className: 'DSPT4',
+    channel: 'DS',
+    age: 25,
+    favInstructor: 'Ms. Othmar',
+    favLanguage: 'Python',
+    favSubjects: ['Java', 'Algorithms', 'Statistics'],
+    specialty: 'Computer Science',
+    catchPhrase: `Five cents please!`
+});
+// INSTRUCTORS
+
 const linus = new Instructor({
-    name: 'Linus',
-    location: 'Van Pelt',
-    gradClassName: 'WEB16',
-    className: 'WEBPT6',
+    name: 'Linus VanPelt',
+    location: 'Chicago',
+    gradClassName: 'CS14',
+    className: 'WEB20, WEBPT8',
     age: 21,
     favLanguage: 'Java',
     specialty: 'Back-end',
     catchPhrase: `I need my blanket!`
 });
 
-const lucy = new ProjectManager({
-    name: 'Lucy',
-    location: 'Van Pelt',
-    gradClassName: 'CS14',
-    className: WEB,
-    age: 25,
-    favLanguage: 'Python',
-    specialty: 'CS',
-    catchPhrase: `Five cents please!`
+const othmar = new Instructor({
+    name: 'Ms. Othmar',
+    location: 'Pebblebrook',
+    className: 'WEB20, WEBPT7',
+    age: 47,
+    favLanguage: 'Full Stack Developer',
+    specialty: 'Everything',
+    catchPhrase: `Womp Womp Womp Womp.`
 });
+
+
+
+// student consoles
+console.log(charlie.springChallenge());
+console.log(charlie.classname);
+// console.log(pigpen.listsSubjects());
+console.log(pigpen.previousBackground);
+console.log(franklin.PRAssignment());
+console.log(franklin.favSubjects);
+// PM consoles
+console.log(snoopy.gradClassName);
+console.log(snoopy.standUp());
+console.log(lucy.favInstructor);
+console.log(lucy.debugsCode);
+// instructor consoles
+console.log(linus.specialty);
+console.log(linus.catchPhrase);
+// console.log(othmar.grade());
+console.log(linus.demo());
+console.log(othmar.favLanguage);
 
 
 
