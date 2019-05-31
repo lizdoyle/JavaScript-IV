@@ -29,6 +29,19 @@
 // * Person receives `speak` as a method.
 // * This method logs out a phrase `Hello my name is Fred, I am from Bedrock` where `name` and `location` are the object's own props
 
+class Person {
+    constructor(attributes) {
+        this.name = attributes.name;
+        this.age = attributes.age;
+        this.location: attributes.location;
+    }
+
+speak() {
+    return `Hello, my name is ${this.name}, and I am from ${this.location}`;
+}
+
+}
+
 // #### Instructor
 
 // * Now that we have a Person as our base class, we'll build our Instructor class.
@@ -40,6 +53,24 @@
 // * Instructor has the following methods:
 //   * `demo` receives a `subject` string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
 //   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
+
+class Instructor extends Person{
+    constructor(attributes){
+        super(attributes);
+
+
+    }
+    demo() {
+        return `${this.name} took damage.`;
+      };
+
+      grade() {
+        return `${this.name} took damage.`;
+      };
+
+}
+
+
 
 // #### Student
 
@@ -54,6 +85,26 @@
 //   * `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
+
+class Student extends Person{
+    constructor(attributes){
+        super(attributes);
+
+
+    }
+    listsSubjects() {
+        return `${this.name} took damage.`;
+      };
+
+    PRAssignment() {
+        return `${this.name} took damage.`;
+      };
+    
+    springChallenge() {
+        return `${this.name} took damage.`;
+      };
+
+}
 // #### Project Manager
 
 // * Now that we have instructors and students, we'd be nowhere without our PM's
@@ -64,6 +115,22 @@
 // * ProjectManagers have the following Methods:
 //   * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
 //   * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
+
+class ProjectManager extends Instructor{
+    constructor(attributes){
+        super(attributes);
+
+
+    }
+    standUp() {
+        return `${this.name} took damage.`;
+      };
+
+      debugsCode() {
+        return `${this.name} took damage.`;
+      };
+
+}
 
 // #### Stretch Problem
 
