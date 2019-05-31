@@ -89,13 +89,13 @@ class Student extends Person{
         this.attributes.favSubjects.forEach(function(list) {
             for(let i = 0; i < list.length; i++) {
                   callBack(list[i], i);
-        };
-        return `${list}`;
-      }
+            return `${list}`;
+        })
+      };
 
     PRAssignment() {
         return `${this.name} has submitted a PR for ${this.subject}`;
-      }
+      };
     
     springChallenge() {
         return `${this.name} has begun sprint challenge on ${this.subject}`;
@@ -232,7 +232,7 @@ const othmar = new Instructor({
 // student consoles
 console.log(charlie.springChallenge());
 console.log(charlie.className);
-console.log(pigpen.listsSubjects());
+// console.log(pigpen.listsSubjects());
 console.log(pigpen.previousBackground);
 console.log(franklin.PRAssignment());
 console.log(franklin.favSubjects);
