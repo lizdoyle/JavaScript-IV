@@ -60,7 +60,7 @@ class Instructor extends Person{
       };
 
       grade(Student) {
-        return `${Student.name} receives a perfect score on ${this.subject}'`;
+        return `${Student.name} receives a perfect score on ${Student.subject}'`;
       };
 
 }
@@ -85,13 +85,13 @@ class Student extends Person{
         this.favSubjects = attributes.favSubjects;
 
     }
-    listsSubjects() {
-        this.attributes.favSubjects.forEach(function(list) {
-            for(let i = 0; i < list.length; i++) {
-                  callBack(list[i], i);
-            return `${list}`;
-        })
-      };
+    listsSubjects(){
+     
+         this.favSubjects.map(function(sub){
+                    console.log(sub);
+                })
+            }
+      
 
     PRAssignment() {
         return `${this.name} has submitted a PR for ${this.subject}`;
@@ -121,8 +121,8 @@ class ProjectManager extends Instructor{
         return `${this.name} announces to ${this.channel}, @channel standy times!​​​​​`;
       };
 
-    debugsCode() {
-        return `${this.name} debugs ${this.name}'s code on ${this.subject}
+    debugsCode(Student) {
+        return `${this.name} debugs ${Student.name}'s code on ${this.subject}
         `;
       };
 
@@ -232,7 +232,7 @@ const othmar = new Instructor({
 // student consoles
 console.log(charlie.springChallenge());
 console.log(charlie.className);
-// console.log(pigpen.listsSubjects());
+pigpen.listsSubjects();
 console.log(pigpen.previousBackground);
 console.log(franklin.PRAssignment());
 console.log(franklin.favSubjects);
@@ -240,7 +240,7 @@ console.log(franklin.favSubjects);
 console.log(snoopy.gradClassName);
 console.log(snoopy.standUp());
 console.log(lucy.favInstructor);
-// console.log(lucy.debugsCode);
+console.log(lucy.debugsCode(charlie));
 // instructor consoles
 console.log(linus.specialty);
 console.log(linus.catchPhrase);
